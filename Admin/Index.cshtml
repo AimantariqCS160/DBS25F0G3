@@ -1,0 +1,166 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AMS Admin Dashboard</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        body {
+            background-color: #f4f7fc;
+            color: #333;
+        }
+
+        header {
+            background-color: #1e3c72;
+            color: white;
+            padding: 20px 30px;
+            font-size: 24px;
+            font-weight: bold;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .card {
+            background: white;
+            padding: 30px 20px;
+            border-radius: 16px;
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            width: 260px;
+            min-height: 220px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+            .card:hover {
+                transform: translateY(-6px);
+                box-shadow: 0 10px 24px rgba(0, 0, 0, 0.15);
+            }
+
+            .card i {
+                font-size: 50px;
+                color: #1e3c72;
+                margin-bottom: 18px;
+            }
+
+            .card h3 {
+                font-size: 20px;
+                color: #2d3e58;
+                margin-bottom: 10px;
+            }
+
+            .card p {
+                font-size: 14px;
+                color: #666;
+                line-height: 1.5;
+            }
+
+        footer {
+            text-align: center;
+            font-size: 14px;
+            color: #777;
+            margin-top: 50px;
+            padding: 20px 10px;
+            background-color: #f0f2f7;
+        }
+
+        .footer-links {
+            margin-bottom: 8px;
+        }
+
+            .footer-links a {
+                color: #2d3e58;
+                text-decoration: none;
+                margin: 0 10px;
+                transition: color 0.3s ease;
+            }
+
+                .footer-links a:hover {
+                    color: #1e3c72;
+                }
+
+        a {
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        University Admin Dashboard - Attendance Management System
+    </header>
+
+    <div class="container">
+        <div class="card">
+            <a href="/Admin/ManageStudent">
+                <i class="fas fa-user-graduate"></i>
+                <h3>Manage Students</h3>
+                <p>Add, update, enroll courses, assign departments</p>
+            </a>
+        </div>
+
+        <div class="card">
+            <a href="/Admin/Manageprofessor">
+                <i class="fas fa-chalkboard-teacher"></i>
+                <h3>Manage Professors</h3>
+                <p>Add, update, assign departments and courses</p>
+            </a>
+        </div>
+
+        <div class="card">
+            <a href="/Admin/ManageDepartment">
+                <i class="fas fa-university"></i>
+                <h3>Manage Departments</h3>
+                <p>Create, update departments and view related entities</p>
+            </a>
+        </div>
+
+        <div class="card">
+            <a href="/Admin/ManageCourses">
+                <i class="fas fa-book-open"></i>
+                <h3>Manage Courses</h3>
+                <p>Add/update courses and assign to departments and professors</p>
+            </a>
+        </div>
+
+        <div class="card">
+            <a href="manage-attendance.html">
+                <i class="fas fa-calendar-check"></i>
+                <h3>Manage Attendance</h3>
+                <p>Track, update, and review student attendance</p>
+            </a>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-links">
+            <a href="#">Privacy Policy</a> |
+            <a href="#">Terms of Service</a>
+        </div>
+        <p>© 2025 Attendance Management System | University Admin Panel</p>
+    </footer>
+
+</body>
+</html>

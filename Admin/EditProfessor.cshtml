@@ -1,0 +1,135 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Edit Professor - AMS</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #f4f7fc;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #1e3c72;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .form-container {
+            max-width: 700px;
+            background-color: white;
+            margin: 40px auto;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+            .form-container h2 {
+                text-align: center;
+                margin-bottom: 20px;
+                color: #1e3c72;
+            }
+
+        form label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        form input,
+        form select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 18px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+        }
+
+        select[multiple] {
+            height: 120px;
+        }
+
+        .form-buttons {
+            display: flex;
+            justify-content: space-between;
+        }
+
+            .form-buttons button {
+                padding: 10px 20px;
+                font-size: 16px;
+                border-radius: 6px;
+                border: none;
+                cursor: pointer;
+            }
+
+        .submit-btn {
+            background-color: #1e3c72;
+            color: white;
+        }
+
+            .submit-btn:hover {
+                background-color: #173c5c;
+            }
+
+        .cancel-btn {
+            background-color: #ccc;
+        }
+
+            .cancel-btn:hover {
+                background-color: #bbb;
+            }
+
+        footer {
+            text-align: center;
+            font-size: 14px;
+            color: #777;
+            margin-top: 40px;
+            padding-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>Edit Professor</header>
+
+    <div class="form-container">
+        <h2>Update Professor Information</h2>
+        <form method="post" action="EditProfessorHandler.cs">
+            <label for="professor_id">Professor ID</label>
+            <input type="text" id="professor_id" name="professor_id" readonly>
+
+            <label for="p_name">Full Name</label>
+            <input type="text" id="p_name" name="p_name" required>
+
+            <label for="designation">Designation</label>
+            <input type="text" id="designation" name="designation" required>
+
+            <label for="departments">Departments (Select one or more)</label>
+            <select id="departments" name="departments" multiple required>
+                <!-- Populate with selected departments from DB -->
+            </select>
+
+            <label for="user_id">User ID</label>
+            <input type="number" id="user_id" name="user_id" required>
+
+            <div class="form-buttons">
+                <button type="submit" class="submit-btn">Update</button>
+                <button type="reset" class="cancel-btn">Cancel</button>
+            </div>
+        </form>
+    </div>
+
+    <footer>
+        © 2025 Attendance Management System | Admin Panel
+    </footer>
+
+</body>
+</html>

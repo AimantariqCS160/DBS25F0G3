@@ -1,0 +1,222 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Students - AMS</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        body {
+            background-color: #f4f7fc;
+            color: #333;
+        }
+
+        header {
+            background-color: #1e3c72;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            font-size: 28px;
+            font-weight: bold;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .container {
+            padding: 20px;
+            max-width: 1200px;
+            margin: 40px auto;
+        }
+
+        .search-bar {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            gap: 10px;
+        }
+
+            .search-bar select,
+            .search-bar input,
+            .search-bar button {
+                padding: 10px;
+                font-size: 16px;
+                border-radius: 8px;
+                border: 1px solid #ccc;
+            }
+
+            .search-bar input {
+                flex: 1;
+            }
+
+            .search-bar select {
+                width: 25%;
+            }
+
+            .search-bar button {
+                width: 15%;
+                background-color: #1e3c72;
+                color: white;
+                border: none;
+                cursor: pointer;
+            }
+
+                .search-bar button:hover {
+                    background-color: #173c5c;
+                }
+
+        .add-btn {
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 8px;
+            background-color: #1e3c72;
+            color: white;
+            border: none;
+            margin-bottom: 20px;
+            cursor: pointer;
+        }
+
+            .add-btn:hover {
+                background-color: #173c5c;
+            }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+            table th, table td {
+                padding: 12px 15px;
+                text-align: left;
+                border-bottom: 1px solid #ddd;
+            }
+
+            table th {
+                background-color: #1e3c72;
+                color: white;
+            }
+
+            table tr:hover {
+                background-color: #f2f4f8;
+            }
+
+        .action-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+            .action-buttons button {
+                padding: 8px 12px;
+                font-size: 14px;
+                border-radius: 6px;
+                border: none;
+                cursor: pointer;
+            }
+
+        .edit-btn {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .delete-btn {
+            background-color: #f44336;
+            color: white;
+        }
+
+        footer {
+            text-align: center;
+            font-size: 14px;
+            color: #777;
+            margin-top: 40px;
+            padding-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        Manage Students - Attendance Management System
+    </header>
+
+    <div class="container">
+        <!-- Department Select and Search -->
+        <div class="search-bar">
+            <select id="departmentSelect">
+                <option value="">Select Department</option>
+                <!-- Options will be populated dynamically from database -->
+            </select>
+            <input type="text" id="search" placeholder="Search students..." />
+            <button>Search</button>
+        </div>
+
+        <!-- Add Student Button -->
+        <a href="/Admin/AddStudent" class="add-btn">Add New Student</a>
+
+        <!-- Student Table -->
+        <table>
+            <thead>
+                <tr>
+                    <th>Reg No</th>
+                    <th>Name</th>
+                    <th>Department</th>
+                    <th>Courses</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="studentTableBody">
+                <!-- The rows will be populated dynamically from the backend -->
+            </tbody>
+        </table>
+    </div>
+
+    <footer>
+        <p>© 2025 Attendance Management System | University Admin Panel</p>
+    </footer>
+
+    <script>
+        // Here you can use JavaScript or jQuery to fetch data from the backend and populate the table dynamically.
+        // For example, using jQuery:
+
+        $(document).ready(function () {
+            // Simulate an API call to fetch student data (replace with actual backend call later)
+
+
+            // Populate the table with student data
+            students.forEach(student => {
+                $('#studentTableBody').append(`
+                    <tr>
+                        <td>${student.regNo}</td>
+                        <td>${student.name}</td>
+                        <td>${student.department}</td>
+                        <td>${student.courses}</td>
+                        <td class="action-buttons">
+                            <a href="/Admin/EditStudent" class="edit-btn" onclick="editStudent('${student.regNo}')">Edit</button>
+                            <button class="delete-btn" onclick="deleteStudent('${student.regNo}')">Delete</button>
+                        </td>
+                    </tr>
+                `);
+            });
+        });
+
+        // Functions to handle button actions
+        function editStudent(regNo) {
+            alert('Editing student with Reg No: ' + regNo);
+            // Here, you can redirect to the edit page or trigger an edit action
+        }
+
+        function deleteStudent(regNo) {
+            if (confirm('Are you sure you want to delete student with Reg No: ' + regNo + '?')) {
+                alert('Deleting student with Reg No: ' + regNo);
+                // Here, you can trigger a delete action from your backend
+            }
+        }
+    </script>
+
+</body>
+</html>

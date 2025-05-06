@@ -1,0 +1,182 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Manage Departments - AMS</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        body {
+            background-color: #f4f7fc;
+            color: #333;
+        }
+
+        header {
+            background-color: #1e3c72;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            font-size: 26px;
+            font-weight: bold;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        .top-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+            .top-bar input {
+                width: 70%;
+                padding: 10px 14px;
+                font-size: 16px;
+                border-radius: 8px;
+                border: 1px solid #ccc;
+            }
+
+            .top-bar a button {
+                padding: 10px 20px;
+                background-color: #1e3c72;
+                color: white;
+                border: none;
+                border-radius: 8px;
+                font-size: 16px;
+                cursor: pointer;
+                min-width: 180px;
+            }
+
+                .top-bar a button:hover {
+                    background-color: #173c5c;
+                }
+
+        .department-card {
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            margin-bottom: 25px;
+            padding: 20px;
+            background-color: #f9fafc;
+        }
+
+        .dept-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+            .dept-header h3 {
+                font-size: 20px;
+                color: #1e3c72;
+            }
+
+        .dept-actions button {
+            margin-left: 10px;
+            padding: 6px 12px;
+            font-size: 14px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            color: white;
+        }
+
+        .edit-btn {
+            background-color: #4CAF50;
+        }
+
+        .delete-btn {
+            background-color: #f44336;
+        }
+
+        .dept-section {
+            margin-top: 15px;
+        }
+
+            .dept-section strong {
+                color: #1e3c72;
+                display: block;
+                margin-bottom: 5px;
+            }
+
+            .dept-section ul {
+                padding-left: 20px;
+                color: #333;
+            }
+
+            .dept-section li {
+                margin-bottom: 4px;
+            }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            font-size: 14px;
+            color: #777;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        Manage Departments - Attendance Management System
+    </header>
+
+    <div class="container">
+        <div class="top-bar">
+            <input type="text" placeholder="Search department by name..." />
+            <a href="/Admin/AddDepartment">
+                <button>Add Department</button>
+            </a>
+        </div>
+
+        <!-- BEGIN LOOP FOR EACH DEPARTMENT -->
+        <div class="department-card">
+            <div class="dept-header">
+                <h3><!-- Department Name Placeholder --></h3>
+                <div class="dept-actions">
+                    <button class="edit-btn">Edit</button>
+                    <button class="delete-btn">Delete</button>
+                </div>
+            </div>
+
+            <div class="dept-section">
+                <strong>Sessions:</strong>
+                <ul>
+                    <!-- <li>Fall 2023</li> -->
+                </ul>
+            </div>
+
+            <div class="dept-section">
+                <strong>Courses:</strong>
+                <ul>
+                    <!-- <li>CS101 - Introduction to Programming</li> -->
+                </ul>
+            </div>
+        </div>
+        <!-- END LOOP -->
+
+    </div>
+
+    <footer>
+        © 2025 Attendance Management System | University Admin Panel
+    </footer>
+
+</body>
+</html>
