@@ -1,0 +1,176 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Course Portal</title>
+    <style>
+        body {
+            background-color: #ffffff;
+            color: #000000;
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background-color: #0b1d3a;
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        h1, h2 {
+            color: white;
+        }
+
+        input[type="text"] {
+            width: 80%;
+            padding: 10px;
+            margin: 20px 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        .course {
+            background-color: white;
+            color: #0b1d3a;
+            border: 1px solid #ccc;
+            width: 250px;
+            margin: 10px auto;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        button {
+            background-color: #2980b9;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            margin-top: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+            button:hover {
+                background-color: #3498db;
+            }
+
+        ul {
+            padding-left: 0;
+            text-align: center;
+            list-style-position: inside;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container" id="enrollSection">
+        <h1>Student Course Enrollment</h1>
+        <input type="text" id="searchInput" placeholder="Search course code (e.g., CS101)">
+        <div id="courseResults"></div>
+
+        <div id="registeredCourses">
+            <h2>Registered Courses</h2>
+            <ul id="registeredList"></ul>
+        </div>
+
+        <button onclick="goToRegisteredPage()">View Registered Courses</button>
+    </div>
+
+    <div class="container hidden" id="registeredCoursesSection">
+        <h1>Courses You've Enrolled</h1>
+        <div id="courseList"></div>
+        <button onclick="goToEnrollPage()">← Back to Enrollment</button>
+    </div>
+
+    <script>
+        const courseData = [
+            { course_id: "CS101", course_name: "Intro to CS", credit_hours: 3, department_id: "CSE", section: "A" },
+            { course_id: "CS101", course_name: "Intro to CS", credit_hours: 3, department_id: "CSE", section: "B" },
+            { course_id: "CS102", course_name: "Data Structures", credit_hours: 3, department_id: "CSE", section: "A" },
+            { course_id: "MA101", course_name: "Calculus I", credit_hours: 3, department_id: "MATH", section: "C" }
+        ];
+
+        let registeredCourses = [];
+
+        document.getElementById('searchInput').addEventListener('input', function () {
+            const keyword = this.value.toUpperCase();
+            const results = courseData.filter(c => c.course_id.includes(keyword));
+            const resultsDiv = document.getElementById('courseResults');
+            resultsDiv.innerHTML = '';
+
+            results.forEach(course => {
+                const div = document.createElement('div');
+                div.className = 'course';
+                div.innerHTML = `
+                    <strong>${course.course_id} - ${course.course_name}</strong><br>
+                    Section: ${course.section}<br>
+                    Credit Hours: ${course.credit_hours}<br>
+                    <button onclick='registerCourse(${JSON.stringify(course)})'>Register</button>
+                `;
+                resultsDiv.appendChild(div);
+            });
+        });
+
+        function registerCourse(course) {
+            if (registeredCourses.some(c => c.course_id === course.course_id && c.section === course.section)) {
+                alert("You have already registered for this section.");
+                return;
+            }
+            registeredCourses.push(course);
+            updateRegisteredList();
+        }
+
+        function updateRegisteredList() {
+            const list = document.getElementById('registeredList');
+            list.innerHTML = '';
+            registeredCourses.forEach(c => {
+                const item = document.createElement('li');
+                item.textContent = `${c.course_id} - ${c.course_name} (Section: ${c.section})`;
+                list.appendChild(item);
+            });
+        }
+
+        function goToRegisteredPage() {
+            document.getElementById('enrollSection').classList.add('hidden');
+            document.getElementById('registeredCoursesSection').classList.remove('hidden');
+
+            const listDiv = document.getElementById('courseList');
+            listDiv.innerHTML = '';
+
+            if (registeredCourses.length === 0) {
+                listDiv.innerHTML = "<p>No courses registered yet.</p>";
+                return;
+            }
+
+            registeredCourses.forEach(course => {
+                const div = document.createElement('div');
+                div.className = 'course';
+                div.innerHTML = `
+                    <strong>${course.course_id} - ${course.course_name}</strong><br>
+                    Section: ${course.section}<br>
+                    Credit Hours: ${course.credit_hours}
+                `;
+                listDiv.appendChild(div);
+            });
+        }
+
+        function goToEnrollPage() {
+            document.getElementById('enrollSection').classList.remove('hidden');
+            document.getElementById('registeredCoursesSection').classList.add('hidden');
+        }
+    </script>
+
+</body>
+</html>

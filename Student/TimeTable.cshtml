@@ -1,0 +1,202 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Dynamic Weekly Timetable</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background-color: white;
+            color: #0d3c74;
+        }
+
+        header {
+            background-color: #0d3c74;
+            padding: 20px;
+            text-align: center;
+            color: white;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 30px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .filters {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        select {
+            padding: 8px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        th, td {
+            padding: 14px;
+            text-align: center;
+            border: 1px solid #ccc;
+        }
+
+        th {
+            background-color: #0d3c74;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f7ff;
+        }
+
+        tr:hover {
+            background-color: #e1edff;
+        }
+
+        .bold {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Weekly Timetable</h1>
+        <p>Select Department, Batch, and Section</p>
+    </header>
+
+    <div class="container">
+        <div class="filters">
+            <select id="deptSelect">
+                <option disabled selected>Choose Department</option>
+                <option value="CSE">CSE</option>
+                <option value="ECE">ECE</option>
+            </select>
+
+            <select id="batchSelect">
+                <option disabled selected>Choose Batch</option>
+                <option value="2025">2025</option>
+                <option value="2026">2026</option>
+            </select>
+
+            <select id="sectionSelect">
+                <option disabled selected>Choose Section</option>
+                <option value="A">A</option>
+                <option value="B">B</option>
+            </select>
+        </div>
+
+        <h2>Class Schedule (Mon - Thurs)</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Day</th>
+                    <th>09:00 - 10:00</th>
+                    <th>10:00 - 11:00</th>
+                    <th>11:30 - 12:30</th>
+                    <th>01:30 - 02:30</th>
+                </tr>
+            </thead>
+            <tbody id="timetableBody">
+                <!-- Rows will be inserted dynamically -->
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        const timetableData = {
+          "CSE_2025_A": {
+            Monday: ["Class 1<br><span class='bold'>Prof. Rao</span><br><span class='bold'>DSA</span>",
+                     "Class 2<br><span class='bold'>Prof. Meera</span><br><span class='bold'>Maths</span>",
+                     "Class 3<br><span class='bold'>Prof. Nair</span><br><span class='bold'>Physics</span>",
+                     "Class 4<br><span class='bold'>Prof. Khan</span><br><span class='bold'>English</span>"],
+            Tuesday: ["Class 1<br><span class='bold'>Prof. Rao</span><br><span class='bold'>DSA</span>",
+                      "Class 2<br><span class='bold'>Prof. Meera</span><br><span class='bold'>Maths</span>",
+                      "Class 3<br><span class='bold'>Prof. Rani</span><br><span class='bold'>Electronics</span>",
+                      "Class 4<br><span class='bold'>Prof. Khan</span><br><span class='bold'>English</span>"],
+            Wednesday: ["Class 1<br><span class='bold'>Prof. Rao</span><br><span class='bold'>Algorithms</span>",
+                        "Class 2<br><span class='bold'>Prof. Meera</span><br><span class='bold'>Linear Algebra</span>",
+                        "Class 3<br><span class='bold'>Prof. Nair</span><br><span class='bold'>Mechanics</span>",
+                        "Class 4<br><span class='bold'>Prof. Rani</span><br><span class='bold'>Digital Logic</span>"],
+            Thursday: ["Class 1<br><span class='bold'>Prof. Rao</span><br><span class='bold'>Software Engg</span>",
+                       "Class 2<br><span class='bold'>Prof. Khan</span><br><span class='bold'>Communication</span>",
+                       "Class 3<br><span class='bold'>Prof. Meera</span><br><span class='bold'>Statistics</span>",
+                       "Class 4<br><span class='bold'>Prof. Rani</span><br><span class='bold'>Networks</span>"]
+          },
+          "ECE_2026_B": {
+            Monday: ["Class 1<br><span class='bold'>Prof. Verma</span><br><span class='bold'>Signals</span>",
+                     "Class 2<br><span class='bold'>Prof. Das</span><br><span class='bold'>Circuits</span>",
+                     "Class 3<br><span class='bold'>Prof. Singh</span><br><span class='bold'>Maths</span>",
+                     "Class 4<br><span class='bold'>Prof. Patil</span><br><span class='bold'>English</span>"],
+            Tuesday: ["Class 1<br><span class='bold'>Prof. Verma</span><br><span class='bold'>Signals</span>",
+                      "Class 2<br><span class='bold'>Prof. Das</span><br><span class='bold'>Circuits</span>",
+                      "Class 3<br><span class='bold'>Prof. Rao</span><br><span class='bold'>Microprocessors</span>",
+                      "Class 4<br><span class='bold'>Prof. Patil</span><br><span class='bold'>English</span>"],
+            Wednesday: ["Class 1<br><span class='bold'>Prof. Verma</span><br><span class='bold'>Digital Logic</span>",
+                        "Class 2<br><span class='bold'>Prof. Das</span><br><span class='bold'>Signals</span>",
+                        "Class 3<br><span class='bold'>Prof. Singh</span><br><span class='bold'>Maths</span>",
+                        "Class 4<br><span class='bold'>Prof. Patil</span><br><span class='bold'>Communication</span>"],
+            Thursday: ["Class 1<br><span class='bold'>Prof. Das</span><br><span class='bold'>Electronics</span>",
+                       "Class 2<br><span class='bold'>Prof. Verma</span><br><span class='bold'>VLSI</span>",
+                       "Class 3<br><span class='bold'>Prof. Singh</span><br><span class='bold'>Maths</span>",
+                       "Class 4<br><span class='bold'>Prof. Patil</span><br><span class='bold'>Presentation</span>"]
+          }
+        };
+
+        const days = ["Monday", "Tuesday", "Wednesday", "Thursday"];
+
+        function updateTimetable() {
+          const dept = document.getElementById("deptSelect").value;
+          const batch = document.getElementById("batchSelect").value;
+          const section = document.getElementById("sectionSelect").value;
+          const key = `${dept}_${batch}_${section}`;
+          const tbody = document.getElementById("timetableBody");
+          tbody.innerHTML = "";
+
+          if (timetableData[key]) {
+            days.forEach(day => {
+              const row = document.createElement("tr");
+              const dayCell = document.createElement("td");
+              dayCell.textContent = day;
+              row.appendChild(dayCell);
+              timetableData[key][day].forEach(cellData => {
+                const td = document.createElement("td");
+                td.innerHTML = cellData;
+                row.appendChild(td);
+              });
+              tbody.appendChild(row);
+            });
+          } else {
+            const row = document.createElement("tr");
+            const td = document.createElement("td");
+            td.colSpan = 5;
+            td.textContent = "No timetable data available for the selected combination.";
+            row.appendChild(td);
+            tbody.appendChild(row);
+          }
+        }
+
+        document.getElementById("deptSelect").addEventListener("change", updateTimetable);
+        document.getElementById("batchSelect").addEventListener("change", updateTimetable);
+        document.getElementById("sectionSelect").addEventListener("change", updateTimetable);
+    </script>
+</body>
+</html>

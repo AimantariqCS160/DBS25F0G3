@@ -1,0 +1,93 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Give Feedback</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .feedback-form {
+            background-color: #002d62;
+            color: white;
+            padding: 30px;
+            border-radius: 10px;
+            width: 400px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+            .feedback-form h2 {
+                text-align: center;
+                margin-bottom: 20px;
+            }
+
+            .feedback-form label {
+                display: block;
+                margin-top: 10px;
+                font-weight: bold;
+            }
+
+            .feedback-form input,
+            .feedback-form textarea {
+                width: 100%;
+                padding: 10px;
+                margin-top: 5px;
+                border-radius: 5px;
+                border: none;
+                font-size: 14px;
+            }
+
+                .feedback-form input[type="datetime-local"] {
+                    font-family: Arial, sans-serif;
+                }
+
+            .feedback-form button {
+                margin-top: 20px;
+                width: 100%;
+                background-color: #007bff;
+                color: white;
+                padding: 10px;
+                border: none;
+                border-radius: 5px;
+                font-weight: bold;
+                cursor: pointer;
+            }
+
+                .feedback-form button:hover {
+                    background-color: #0056b3;
+                }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <form class="feedback-form" method="POST" action="/submit-feedback">
+            <h2>Give Feedback</h2>
+
+            <label for="feedbackId">Feedback ID</label>
+            <input type="text" id="feedbackId" name="feedbackId" required>
+
+            <label for="studentId">Student ID</label>
+            <input type="text" id="studentId" name="studentId" required>
+
+            <label for="message">Message</label>
+            <textarea id="message" name="message" rows="4" required></textarea>
+
+            <label for="submittedAt">Submitted At</label>
+            <input type="datetime-local" id="submittedAt" name="submittedAt" required>
+
+            <button type="submit">Submit Feedback</button>
+        </form>
+    </div>
+</body>
+</html>

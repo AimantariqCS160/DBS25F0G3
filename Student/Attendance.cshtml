@@ -1,0 +1,89 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Subject-wise Attendance</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #f3f7fc;
+            color: #0d3c74;
+        }
+
+        header {
+            background-color: #0d3c74;
+            padding: 20px;
+            text-align: center;
+            color: white;
+        }
+
+            header h1 {
+                margin: 0;
+                font-size: 24px;
+            }
+
+        .container {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 12px 16px;
+            text-align: center;
+            border-bottom: 1px solid #d9e2ef;
+        }
+
+        th {
+            background-color: #0d3c74;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f0f4fb;
+        }
+
+        tr:hover {
+            background-color: #e4ecf9;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Subject-wise Attendance</h1>
+    </header>
+
+    <div class="container">
+        <h2>Your Attendance Record</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Course Code</th>
+                    <th>Course Name</th>
+                    <th>Professor Name</th>
+                    <th>Attendance %</th>
+                </tr>
+            </thead>
+            <tbody id="attendanceBody">
+                <!-- Attendance data rows will be inserted here dynamically -->
+            </tbody>
+        </table>
+    </div>
+
+</body>
+</html>
