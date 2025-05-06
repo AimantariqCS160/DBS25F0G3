@@ -1,0 +1,111 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Department - AMS</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #f2f5fa;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #1e3c72;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            font-size: 26px;
+            font-weight: bold;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: 40px auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            color: #1e3c72;
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+            margin: 15px 0 6px;
+            font-weight: bold;
+        }
+
+        input, button {
+            width: 100%;
+            padding: 10px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+        }
+
+        button {
+            background-color: #1e3c72;
+            color: white;
+            border: none;
+            margin-top: 20px;
+            cursor: pointer;
+        }
+
+            button:hover {
+                background-color: #173c5c;
+            }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 20px;
+            text-decoration: none;
+            color: #1e3c72;
+            font-weight: bold;
+        }
+
+            .back-link:hover {
+                text-decoration: underline;
+            }
+
+        .info-box {
+            background-color: #e0e8f4;
+            border-left: 5px solid #1e3c72;
+            padding: 10px;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <header>Add Department - Attendance Management System</header>
+
+    <div class="container">
+        <div class="info-box">
+            Fill in the details to add a new department to the system.
+        </div>
+
+        <form method="post" action="/add-department">
+            <label for="departmentId">Department ID:</label>
+            <input type="text" id="departmentId" name="departmentId" placeholder="Enter unique department ID" required>
+
+            <label for="departmentName">Department Name:</label>
+            <input type="text" id="departmentName" name="departmentName" placeholder="Enter department name" required>
+
+            <label for="sessionId">Session ID:</label>
+            <input type="text" id="sessionId" name="sessionId" placeholder="Enter session ID" required>
+
+            <button type="submit">Add Department</button>
+        </form>
+
+        <a href="/Admin/ManageDepartment" class="back-link">← Back to Manage Departments</a>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,193 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Attendance Management System - Login</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body, html {
+            height: 100%;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #ece9e6, #ffffff);
+        }
+
+        nav {
+            width: 100%;
+            padding: 15px 40px;
+            background-color: #1e3c72;
+            color: white;
+            font-size: 24px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 60px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+        }
+
+        .main-content {
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding-top: 80px;
+        }
+
+        .login-container {
+            background: #ffffff;
+            padding: 40px 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            width: 350px;
+            text-align: center;
+        }
+
+            .login-container h2 {
+                margin-bottom: 25px;
+                color: #1e3c72;
+                font-size: 26px;
+            }
+
+        .form-group {
+            text-align: left;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+            .form-group label {
+                display: block;
+                margin-bottom: 8px;
+                font-size: 14px;
+                color: #333;
+            }
+
+            .form-group input,
+            .form-group select {
+                width: 100%;
+                padding: 12px;
+                border-radius: 8px;
+                border: 1px solid #ccc;
+                font-size: 14px;
+                background: #f9f9f9;
+                transition: border-color 0.3s;
+            }
+
+                .form-group input:focus,
+                .form-group select:focus {
+                    border-color: #1e3c72;
+                    outline: none;
+                }
+
+        .login-button {
+            width: 100%;
+            padding: 12px;
+            margin-top: 10px;
+            background-color: #1e3c72;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+            .login-button:hover {
+                background-color: #274b8e;
+            }
+
+        .footer-text {
+            margin-top: 20px;
+            font-size: 12px;
+            color: #777;
+            text-align: center;
+        }
+
+        .eye-icon {
+            position: absolute;
+            right: 10px;
+            top: 35px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        Attendance Management System
+    </nav>
+
+    <div class="main-content">
+        <div class="login-container">
+            <h2>Login</h2>
+
+            <form id="loginForm" method="get">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username" placeholder="Enter your username" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" placeholder="Enter your password" required>
+                    <span class="eye-icon" onclick="togglePassword()">👁️</span>
+                </div>
+
+                <div class="form-group">
+                    <label for="role">Choose Role</label>
+                    <select id="role" name="role" required>
+                        <option value="" disabled selected>Select role</option>
+                        <option value="/Admin/Index">Admin</option>
+                        <option value="/Professor/Index">Professor</option>
+                        <option value="/Student/Index">Student</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="login-button">Login</button>
+            </form>
+
+            <div class="footer-text">
+                © 2025 Attendance Management System
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function togglePassword() {
+            var passwordField = document.getElementById("password");
+            var icon = document.querySelector(".eye-icon");
+            if (passwordField.type === "password") {
+                passwordField.type = "text";
+                icon.textContent = "🙈";
+            } else {
+                passwordField.type = "password";
+                icon.textContent = "👁️";
+            }
+        }
+
+        document.getElementById("loginForm").addEventListener("submit", function (e) {
+            var selectedRole = document.getElementById("role").value;
+            if (selectedRole) {
+                this.action = selectedRole;
+            } else {
+                e.preventDefault();
+                alert("Please select a role.");
+            }
+        });
+    </script>
+
+</body>
+</html>

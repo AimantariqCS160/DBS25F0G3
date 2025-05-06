@@ -1,0 +1,119 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Assign Courses to Professor</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #f2f5fa;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #1e3c72;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            font-size: 26px;
+            font-weight: bold;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: 40px auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            color: #1e3c72;
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+            margin: 15px 0 6px;
+            font-weight: bold;
+        }
+
+        select, button {
+            width: 100%;
+            padding: 10px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+        }
+
+            select[multiple] {
+                height: 150px;
+            }
+
+        button {
+            background-color: #1e3c72;
+            color: white;
+            border: none;
+            margin-top: 20px;
+            cursor: pointer;
+        }
+
+            button:hover {
+                background-color: #173c5c;
+            }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 20px;
+            text-decoration: none;
+            color: #1e3c72;
+            font-weight: bold;
+        }
+
+            .back-link:hover {
+                text-decoration: underline;
+            }
+
+        .info-box {
+            background-color: #e0e8f4;
+            border-left: 5px solid #1e3c72;
+            padding: 10px;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <header>Assign Courses to Professor</header>
+
+    <div class="container">
+        <div class="info-box">
+            Assigning to: <strong><!-- Professor Name from backend --></strong>
+        </div>
+
+        <form method="post" action="/assign-course">
+            <input type="hidden" name="professorId" value="<!-- Professor ID -->">
+
+            <label for="department">Select Department:</label>
+            <select name="departmentId" id="department">
+                <option value="">-- Select Department --</option>
+                <!-- Departments from DB -->
+            </select>
+
+            <label for="courses">Select Courses:</label>
+            <select name="courseIds" id="courses" multiple>
+                <!-- Courses from DB filtered by department -->
+            </select>
+
+            <button type="submit">Assign Selected Courses</button>
+        </form>
+
+        <a href="/Admin/ManageProfessor" class="back-link">← Back to Manage Professors</a>
+    </div>
+
+</body>
+</html>
