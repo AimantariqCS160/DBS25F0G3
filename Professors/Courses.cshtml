@@ -1,0 +1,159 @@
+﻿@{
+    ViewData["Title"] = "Courses";
+}
+
+<style>
+    body {
+        font-family: 'Segoe UI', sans-serif;
+        background-color: #f0f2f7;
+        margin: 0;
+        padding: 0;
+    }
+
+    .header-banner {
+        background-color: #203a72;
+        color: white;
+        padding: 30px 20px;
+        text-align: center;
+    }
+
+    .header-banner h1 {
+        margin: 0;
+        font-size: 32px;
+    }
+
+    .course-material-container {
+        max-width: 900px;
+        margin: 40px auto;
+        padding: 30px;
+        background-color: #ffffff;
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+    }
+
+    .course-material-container h2 {
+        color: #203a72;
+        font-size: 24px;
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+    .course-material-form {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .course-material-form label {
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
+
+    .course-material-form input,
+    .course-material-form textarea {
+        padding: 10px;
+        margin-bottom: 15px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+    }
+
+    .course-material-form textarea {
+        width: 100%;
+        height: 150px;
+        resize: none;
+        overflow-y: auto;
+    }
+
+    .course-material-form button {
+        padding: 10px 20px;
+        background-color: #203a72;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        font-weight: bold;
+        cursor: pointer;
+    }
+
+    .course-material-form button:hover {
+        background-color: #1a2f5e;
+    }
+
+    .uploaded-materials {
+        margin-top: 40px;
+    }
+
+    .uploaded-materials h3 {
+        color: #203a72;
+        text-align: center;
+        margin-bottom: 15px;
+    }
+
+    .uploaded-materials ul {
+        list-style-type: none;
+        padding: 0;
+    }
+
+    .uploaded-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px;
+        border-bottom: 1px solid #ccc;
+    }
+
+    .uploaded-item a {
+        text-decoration: none;
+        color: #203a72;
+    }
+
+    .uploaded-item a:hover {
+        text-decoration: underline;
+    }
+
+    .delete-button {
+        background-color: red;
+        color: white ;
+        padding: 6px 14px;
+        text-decoration: none;
+        border-radius: 4px;
+        font-weight: bold;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .delete-button:hover {
+        background-color: darkred;
+    }
+</style>
+
+<div class="header-banner">
+    <h1>Courses - Attendance Management System</h1>
+</div>
+
+<div class="course-material-container">
+    <h2>Manage Course Materials</h2>
+
+    <form class="course-material-form" asp-action="Upload" asp-controller="Courses" method="post" enctype="multipart/form-data">
+        <label for="materialTitle">Material Title:</label>
+        <input type="text" id="materialTitle" name="Title" required />
+
+        <label for="materialDescription">Description:</label>
+        <textarea id="materialDescription" name="Description" rows="3" required></textarea>
+
+        <label for="materialFile">Upload File:</label>
+        <input type="file" id="materialFile" name="MaterialFile" required />
+
+        <button type="submit">Upload Material</button>
+    </form>
+
+    <div class="uploaded-materials">
+        <h3>Uploaded Files</h3>
+        <ul>
+            @foreach (var item in ViewBag.CourseMaterials) 
+            {
+                <li class="uploaded-item">
+                    <a href="@Url.Content("~/uploads/" + item.FilePath)" target="_blank">@item.Title</a>
+                    <a asp-action="Delete" asp-route-id="@item.MaterialId" class="delete-button">Delete</a>
+                </li>
+            }
+        </ul>
+    </div>
+</div>

@@ -1,0 +1,118 @@
+﻿@{
+    ViewData["Title"] = "Mark Attendance";
+}
+
+<style>
+    body {
+        font-family: 'Segoe UI', sans-serif;
+        background-color: #f0f2f7;
+        margin: 0;
+        padding: 0;
+    }
+
+    .header-banner {
+        background-color: #203a72;
+        color: white;
+        padding: 30px 20px;
+        text-align: center;
+    }
+
+    .header-banner h1 {
+        margin: 0;
+        font-size: 32px;
+    }
+
+    .form-container {
+        max-width: 1000px;
+        margin: 40px auto;
+        padding: 30px;
+        background-color: #ffffff;
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+    }
+
+    .form-row {
+        display: flex;
+        gap: 15px;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+
+    .form-group {
+        flex: 1;
+        min-width: 160px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .form-group label {
+        margin-bottom: 6px;
+        font-weight: bold;
+        color: #203a72;
+    }
+
+    .form-group input,
+    .form-group select {
+        padding: 10px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+    }
+
+    .submit-btn {
+        margin-top: 25px;
+        background-color: #203a72;
+        color: white;
+        border: none;
+        padding: 12px 24px;
+        border-radius: 5px;
+        font-weight: bold;
+        cursor: pointer;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .submit-btn:hover {
+        background-color: #1a2f5e;
+    }
+</style>
+
+<div class="header-banner">
+    <h1>Mark Attendance - Attendance Management System</h1>
+</div>
+
+<div class="form-container">
+    <form asp-action="MarkAttendance" method="post">
+        <div class="form-row">
+            <div class="form-group">
+                <label for="course_id">Course ID</label>
+                <input id="course_id" name="course_id" class="form-control" />
+            </div>
+
+            <div class="form-group">
+                <label for="student_id">Student ID</label>
+                <input id="student_id" name="student_id" class="form-control" />
+            </div>
+
+            <div class="form-group">
+                <label for="professor_id">Professor ID</label>
+                <input id="professor_id" name="professor_id" class="form-control" />
+            </div>
+
+            <div class="form-group">
+                <label for="date">Date</label>
+                <input id="date" name="date" type="date" class="form-control" />
+            </div>
+
+            <div class="form-group">
+                <label for="status">Status</label>
+                <select id="status" name="status" class="form-control">
+                    <option value="Present">Present</option>
+                    <option value="Absent">Absent</option>
+                    <option value="Leave">Leave</option>
+                </select>
+            </div>
+        </div>
+        <button type="submit" class="submit-btn">Submit</button>
+    </form>
+</div>

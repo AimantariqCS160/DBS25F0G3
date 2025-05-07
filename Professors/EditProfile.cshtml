@@ -1,0 +1,122 @@
+﻿@{
+    ViewData["Title"] = "Edit Profile";
+}
+
+<style>
+    body {
+        font-family: 'Segoe UI', sans-serif;
+        background-color: #f0f2f7;
+        margin: 0;
+        padding: 0;
+    }
+
+    .header-banner {
+        background-color: #203a72;
+        color: white;
+        padding: 30px 20px;
+        text-align: center;
+    }
+
+    .header-banner h1 {
+        margin: 0;
+        font-size: 32px;
+    }
+
+    .profile-edit-container {
+        max-width: 700px;
+        margin: 40px auto;
+        padding: 30px;
+        background-color: #ffffff;
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+    }
+
+    .profile-edit-container h2 {
+        color: #203a72;
+        font-size: 24px;
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+    .profile-edit-form {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .profile-edit-form label {
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
+
+    .profile-edit-form input,
+    .profile-edit-form textarea {
+        padding: 10px;
+        margin-bottom: 15px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        font-size: 14px;
+    }
+
+    .profile-edit-form textarea {
+        height: 120px;
+        resize: none;
+        overflow-y: auto;
+    }
+
+    .profile-edit-form button {
+        padding: 10px 20px;
+        background-color: #203a72;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        font-weight: bold;
+        cursor: pointer;
+    }
+
+    .profile-edit-form button:hover{
+        background-color: #1a2f5e;
+    }
+
+    .current-picture {
+        margin-top: -10px;
+        margin-bottom: 15px;
+    }
+
+    .current-picture a {
+        color: #203a72;
+        text-decoration: none;
+    }
+
+    .current-picture a:hover {
+        text-decoration: underline;
+    }
+</style>
+
+<div class="header-banner">
+    <h1>Edit Profile - Attendance Management System</h1>
+</div>
+
+<div class="profile-edit-container">
+    <h2>Update Your Profile Information</h2>
+
+    <form class="profile-edit-form" asp-action="EditProfile" asp-controller="Profile" method="post" enctype="multipart/form-data">
+        <input type="hidden" name="UserId" />
+
+        <label for="FullName">Full Name:</label>
+        <input type="text" name="FullName" required />
+
+        <label for="Email">Email:</label>
+        <input type="email" name="Email" required />
+
+        <label for="Phone">Phone Number:</label>
+        <input type="tel" name="Phone" required />
+
+        <label for="Bio">Bio:</label>
+        <textarea name="Bio"></textarea>
+
+        <label for="ProfilePictureFile">Upload Profile Picture:</label>
+        <input type="file" name="ProfilePictureFile" />
+
+        <button type="submit">Update Profile</button>
+    </form>
+</div>
