@@ -1,0 +1,106 @@
+﻿@{
+    ViewData["Title"] = "View Attendance";
+}
+
+<style>
+    body {
+        font-family: 'Segoe UI', sans-serif;
+        background-color: #f0f2f7;
+        margin: 0;
+        padding: 0;
+    }
+
+    .header-banner {
+        background-color: #203a72;
+        color: white;
+        padding: 30px 20px;
+        text-align: center;
+    }
+
+    .header-banner h1 {
+        margin: 0;
+        font-size: 32px;
+    }
+
+    .view-container {
+        max-width: 1200px;
+        margin: 40px auto;
+        padding: 30px;
+        background-color: #ffffff;
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+        overflow-x: auto;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        background-color: #ffffff;
+    }
+
+    table th, table td {
+        padding: 14px 16px;
+        text-align: center;
+        border-bottom: 1px solid #e0e0e0;
+    }
+
+    table th {
+        background-color: #f5f7fa;
+        color: #203a72;
+        font-weight: bold;
+    }
+
+    table td {
+        color: #203a72;
+    }
+
+    table tr:hover td {
+        background-color: #f0f8ff;
+    }
+
+    .no-records {
+        text-align: center;
+        color: #888;
+        font-style: italic;
+        padding: 20px;
+    }
+</style>
+
+<div class="header-banner">
+    <h1>View Attendance - Attendance Management System</h1>
+</div>
+
+<div class="view-container">
+    <table>
+        <thead>
+            <tr>
+                <th>Student ID</th>
+                <th>Course ID</th>
+                <th>Professor ID</th>
+                <th>Date</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (ViewBag.AttendanceList != null)
+            {
+                foreach (var record in ViewBag.AttendanceList)
+                {
+                    <tr>
+                        <td>@record.StudentId</td>
+                        <td>@record.CourseId</td>
+                        <td>@record.ProfessorId</td>
+                        <td>@record.Date.ToString("yyyy-MM-dd")</td>
+                        <td>@record.Status</td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="5" class="no-records">No attendance records found.</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
